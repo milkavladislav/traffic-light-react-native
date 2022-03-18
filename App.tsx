@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from "react";
+import { Button, View } from "react-native";
+
+const TrafficColor: string[] = ["red", "yellow", "green"];
 
 export default function App() {
+  const [color, setColor] = useState("red");
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: color,
+        alignItems: "center",
+        justifyContent: "space-around",
+      }}
+    >
+      {TrafficColor.map((color) => (
+        <Button
+          key={color}
+          title={color}
+          onPress={() => {
+            setColor(color);
+          }}
+        />
+      ))}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
